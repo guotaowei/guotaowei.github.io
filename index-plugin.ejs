@@ -1,0 +1,12 @@
+<script src="https://www.tpbossplus.com/game/cocos-v3-8/src/polyfills.bundle.js" charset="utf-8"> </script>
+
+<script src="https://www.tpbossplus.com/game/cocos-v3-8/src/system.bundle.js" charset="utf-8"> </script>
+
+<script src="https://www.tpbossplus.com/game/cocos-v3-8/src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
+
+
+
+<script>
+    console.log('./<%= indexJsName %>')
+    System.import('./<%= indexJsName %>').catch(function(err) { console.error(err); })
+</script>
