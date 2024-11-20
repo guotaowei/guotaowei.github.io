@@ -1,5 +1,6 @@
 System.register(["./application.js"], function (_export, _context) {
   "use strict";
+
   var Application, application;
   function topLevelImport(url) {
     return System["import"](url);

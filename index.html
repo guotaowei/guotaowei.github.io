@@ -26,7 +26,7 @@
 <body>
   <div id="GameDiv" cc_exact_fit_screen="false" style="width: 750px; height: 1334px;">
     <div id="Cocos3dGameContainer">
-      <canvas id="GameCanvas" tabindex="-1"></canvas>
+      <canvas id="GameCanvas" tabindex="99"></canvas>
     </div>
   </div>
   <script type="text/javascript" charset='utf-8'>
@@ -46,11 +46,6 @@
           GameDiv.style.height = window.innerHeight + "px"
           GameDiv.style.width = window.innerHeight / 1334 * 750 + "px"
         }
-
-
-        // if (landingPageCanvas) {
-        //   landingPageCanvas.style.transform = `scale(${width / 720})`;
-        // }
       }
 
       window.addEventListener("resize", window.windowResize);
@@ -59,21 +54,20 @@
     }
     _adaptation()
   </script>
-
   <!-- Polyfills bundle. -->
 
-  <script src="src/polyfills.bundle.js" charset="utf-8"> </script>
+<script src="src/polyfills.bundle.js" charset="utf-8"> </script>    
 
 
-  <!-- SystemJS support. -->
-  <script src="src/system.bundle.js" charset="utf-8"> </script>
+<!-- SystemJS support. -->
+<script src="src/system.bundle.js" charset="utf-8"> </script>
 
-  <!-- Import map -->
-  <script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
+<!-- Import map -->
+<script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
 
-  <script>
-    System.import('./index.js').catch(function (err) { console.error(err); })
-  </script>
+<script>
+    System.import('./index.js').catch(function(err) { console.error(err); })
+</script>
 </body>
 
 </html>
