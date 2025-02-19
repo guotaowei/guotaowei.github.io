@@ -5,27 +5,27 @@ export const moduleConfig = {
       title: "热门游戏",
       items: [
         {
-          buttonText: "可以点击",
+          buttonText: "faers",
           imageUrl: "./images/game1.jpg",
-          description: "<p>国民级MOBA手游，<strong>腾讯最热门的游戏之一</strong></p>",
+          description: "<p>faers，<strong>faers</strong></p>",
           link: ""
         },
         {
-          buttonText: "和平精英",
+          buttonText: "mimic",
           imageUrl: "./images/game2.jpg",
-          description: "<p>超人气<em>生存射击手游</em>，快节奏的战术竞技体验</p>",
+          description: "<p>mimic<em>mimic</em>，mimic</p>",
           link: ""
         },
         {
-          buttonText: "王者荣耀",
+          buttonText: "nhanes",
           imageUrl: "./images/game1.jpg",
-          description: "<p>国民级MOBA手游，<strong>腾讯最热门的游戏之一</strong></p>",
+          description: "<p>nhanes<strong>nhanes</strong></p>",
           link: ""
         },
         {
-          buttonText: "和平精英",
+          buttonText: "gbd",
           imageUrl: "./images/game2.jpg",
-          description: "<p>超人气<em>生存射击手游</em>，快节奏的战术竞技体验</p>",
+          description: "<p>gbd<em>gbd</em>gbd</p>",
           link: ""
         },
       ]
