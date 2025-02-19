@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航栏组件示例</title>
+    <style>
+        /* 模块化内容样式 */
+        #mainContent {
+            margin-top: 80px;
+            /* 为固定导航栏留出空间 */
+        }
+
+        .content-section {
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-item {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .item-button {
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .item-button:hover {
+            /* background: #0056b3; */
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-description {
+            padding: 1rem;
+            background: #f8f9fa;
+            flex-grow: 1;
+        }
+
+        .item-description p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navContainer"></div>
+    <main id="mainContent"></main>
+
+    <script type="module">
+        import { createNavBar } from '../Component/navbar.js';
+        import { moduleConfig } from './Config/index_config.js';
+
+        // 导航栏初始化
+        const container = document.getElementById('navContainer');
+        const navbar = createNavBar(container, {
+            isLoggedIn: false,
+            username: '',
+            onLoginClick: () => {
+                console.log('登录按钮被点击');
+                navbar.update({
+                    isLoggedIn: true,
+                    username: '张三'
+                });
+            }
+        });
+
+        // 渲染模块化内容
+        const mainContent = document.getElementById('mainContent');
+
+        function renderContent() {
+            moduleConfig.sections.forEach(section => {
+                const sectionElement = document.createElement('section');
+                sectionElement.className = 'content-section';
+
+                sectionElement.innerHTML = `
+                    <h2 class="section-title">${section.title}</h2>
+                    <div class="section-content">
+                        ${section.items.map(item => `
+                            <div class="content-item" onclick="handleClick('${item.link}')" style="cursor: pointer;">
+                                <button class="item-button">
+                                    ${item.buttonText}
+                                </button>
+                                <img src="${item.imageUrl}" alt="${item.buttonText}" class="item-image">
+                                <div class="item-description">
+                                    ${item.description}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                mainContent.appendChild(sectionElement);
+            });
+        }
+
+        // 初始化渲染
+        renderContent();
+    </script>
+</body>
+
+</html>
