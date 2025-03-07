@@ -8,7 +8,7 @@ export const moduleConfig = {
           buttonText: "faers",
           imageUrl: "./images/game1.jpg",
           description: "<p>faers，<strong>以开放</strong></p>",
-          link: "../test1/index.html"
+          link: "./test1/index.html"
         },
         {
           buttonText: "mimic",
