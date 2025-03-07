@@ -4,14 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>导航栏组件示例</title>
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 导入marked库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* 模块化内容样式 */
-        #mainContent {
-            margin-top: 80px;
-            /* 为固定导航栏留出空间 */
+        /* 导航栏样式 */
+        #navContainer {
+            position: fixed;
+            /* 固定导航栏 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            /* 背景色 */
+            z-index: 1000;
+            /* 确保导航栏在最上层 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* 添加阴影 */
         }
 
+        /* 主内容容器 */
+        .container {
+            margin-top: 80px;
+            /* 为导航栏留出空间 */
+            padding: 1rem;
+        }
+
+        /* 模块化内容样式 */
         .content-section {
             margin: 2rem auto;
             max-width: 1200px;
@@ -57,7 +77,7 @@
         }
 
         .item-button:hover {
-            /* background: #0056b3; */
+            background: #0056b3;
         }
 
         .item-image {
@@ -82,11 +102,18 @@
 
 <body>
     <div id="navContainer"></div>
-    <main id="mainContent"></main>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <!-- 导航栏内容将由JavaScript动态生成 -->
+        </div>
+        <div class="content" id="content">
+            <p>请从左侧选择一个Markdown文件进行查看。</p>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 
     <script type="module">
         import { createNavBar } from '../Component/navbar.js';
-        import { moduleConfig } from './Config/index_config.js';
 
         // 导航栏初始化
         const container = document.getElementById('navContainer');
@@ -101,38 +128,6 @@
                 });
             }
         });
-
-        // 渲染模块化内容
-        const mainContent = document.getElementById('mainContent');
-
-        function renderContent() {
-            moduleConfig.sections.forEach(section => {
-                const sectionElement = document.createElement('section');
-                sectionElement.className = 'content-section';
-
-                sectionElement.innerHTML = `
-                    <h2 class="section-title">${section.title}</h2>
-                    <div class="section-content">
-                        ${section.items.map(item => `
-                            <div class="content-item" onclick="handleClick('${item.link}')" style="cursor: pointer;">
-                                <button class="item-button">
-                                    ${item.buttonText}
-                                </button>
-                                <img src="${item.imageUrl}" alt="${item.buttonText}" class="item-image">
-                                <div class="item-description">
-                                    ${item.description}
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-
-                mainContent.appendChild(sectionElement);
-            });
-        }
-
-        // 初始化渲染
-        renderContent();
     </script>
 </body>
 

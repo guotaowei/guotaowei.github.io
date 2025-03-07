@@ -162,7 +162,7 @@ export function createNavBar(container, options = {}) {
             isLoggedIn = false,
             username = '',
             navItems = [
-                { text: '主页', url: './index.html' },
+                { text: '主页', url: '../index.html' },
                 { text: '关于我们', url: '#' }
             ]
         } = options;
