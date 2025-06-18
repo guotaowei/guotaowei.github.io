@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 导入marked库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* 导航栏样式 */
+        #navContainer {
+            position: fixed;
+            /* 固定导航栏 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            /* 背景色 */
+            z-index: 1000;
+            /* 确保导航栏在最上层 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* 添加阴影 */
+        }
+
+        /* 主内容容器 */
+        .container {
+            margin-top: 80px;
+            /* 为导航栏留出空间 */
+            padding: 1rem;
+        }
+
+        /* 模块化内容样式 */
+        .content-section {
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-item {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .content-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .item-button {
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .item-button:hover {
+            background: #0056b3;
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-description {
+            padding: 1rem;
+            background: #f8f9fa;
+            flex-grow: 1;
+        }
+
+        .item-description p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navContainer"></div>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <!-- 导航栏内容将由JavaScript动态生成 -->
+        </div>
+        <div class="content" id="content">
+            <p>请从左侧选择一个Markdown文件进行查看。</p>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+
+    <script type="module">
+        import { createNavBar } from '../Component/navbar.js';
+
+        // 导航栏初始化
+        const container = document.getElementById('navContainer');
+        const navbar = createNavBar(container, {
+            isLoggedIn: false,
+            username: '',
+            onLoginClick: () => {
+                console.log('登录按钮被点击');
+                navbar.update({
+                    isLoggedIn: true,
+                    username: '张三'
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
